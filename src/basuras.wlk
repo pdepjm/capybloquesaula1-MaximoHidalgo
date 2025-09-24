@@ -22,6 +22,40 @@ object lataDeCerveza {
   }
 }
 
+object cigarros {
+  var property position = game.at(0,5)
+  var direccion = "derecha"
+  const impactoEnHuellaDeCarbono = 80
+
+  method impactoEnLaHuellaDeCarbono() = impactoEnHuellaDeCarbono
+  method nombre() =  "cigarrillos"
+  method image() = self.nombre() + ".png"
+  method esReciclable() = false
+
+  method arrastradoPorElAgua() {
+    if (direccion == "derecha"){
+      if(position == game.at(9,5)){
+        direccion = "izquierda"
+        position = nuevaPosicion.HaciaLaIzquierda()
+      }else{
+          position = nuevaPosicion.HaciaLaDerecha()
+      }
+    }else if (direccion == "izquierda") {
+      if (position == game.at(0,5)) {
+        direccion = "derecha"
+        position = nuevaPosicion.HaciaLaDerecha()
+      } else{
+        position = nuevaPosicion.HaciaLaIzquierda()
+      }
+    }
+  }
+
+  method colisionarCon(capy) {
+    capy.recolectarBasura(self)
+    game.removeTickEvent("arrastradoPorElAgua")
+  }
+}
+
 object botellaDeGaseosa {
   var impactoEnHuellaDeCarbono = 100
   var property position = posicionAleatoria.calcular()

@@ -12,3 +12,13 @@ object plantaDeTratamiento {
       })
   }
 }
+
+object fabricaDeDesechos {
+  var property position = game.at(3, 6)
+  
+  method image() = "fabricaDeDesechos.png"
+  
+  method colisionarCon(capy) {
+    game.say(capy, "Esta contaminando todo")
+    }
+}

@@ -11,24 +11,37 @@ program ejemplo {
   game.addVisual(lataDeCerveza)
   game.addVisual(barrilDeCombustible)
   game.addVisual(plantaDeTratamiento)
+  game.addVisual(fabricaDeDesechos)
+  game.addVisual(cigarros)
   game.addVisualCharacter(capy)
+  game.addVisual(tortuga)
   
   game.onCollideDo(capy, { elemento =>
     elemento.colisionarCon(capy)
   })
   
-  // Cambiar combustible cada 5 segundos
+  //Cambiar combustible cada 5 segundos
   game.onTick(5000, "cambiarCombustible", {
     barrilDeCombustible.cambiarCombustible()
     game.say(barrilDeCombustible, "El barril ahora tiene: " + barrilDeCombustible.combustibleActual().sufijo() )
   })
-  
-  keyboard.h().onPressDo(
-    {
+
+  keyboard.h().onPressDo({
       game.schedule(2000,{ 
-      game.say(capy,"Tu huella de carbono es: "+ capy.impactoEnLaHuellaDeCarbono() )
-        })
-        }
+      game.say(capy,"Tu huella de carbono es: "+ capy.impactoEnLaHuellaDeCarbono())
+        })}
   )
+
+  keyboard.n().onPressDo({
+      game.schedule(100,{ 
+      game.say(capy,"pudiste ayudar a la tortuga ")
+        })
+      capy.salvarTortuga()
+    }
+  )
+
+  //Se mueve ida y vuelta
+  game.onTick(500, "arrastradoPorElAgua", {cigarros.arrastradoPorElAgua()})
+  
   game.start()
 }
