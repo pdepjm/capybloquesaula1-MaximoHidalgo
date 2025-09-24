@@ -6,7 +6,7 @@ object capy {
   
   method recolectarBasura(basura){
     game.removeVisual(basura)
-    game.say(self, "Recolecté: barril de " + basura.nombre())
+    game.say(self, "Recolecté: " + basura.nombre())
     impactoEnLaHuellaDeCarbonoTotal += basura.impactoEnLaHuellaDeCarbono()
   }
   
@@ -15,6 +15,32 @@ object capy {
   }
   
   method impactoEnLaHuellaDeCarbono() = impactoEnLaHuellaDeCarbonoTotal
+
+  method salvarTortuga(){
+    tortuga.salvar()
+  }
   
   method image() = "capy_tranqui.png"
+}
+
+object tortuga {
+  var contaminada = true
+  var property position = game.at(7,3)
+
+  method colisionarCon(capy) {
+    game.say(capy, "Hay que ayudarla")
+    game.say(self, "Estoy contaminada :(, aprieta N para ayudarme")
+    }
+  
+  method salvar() {
+    contaminada = false
+  }
+
+  method image() {
+    if (contaminada) {
+      return "tortugaContaminada.png"
+    } else {
+      return "tortugaSana.png"
+    }
+  }
 }

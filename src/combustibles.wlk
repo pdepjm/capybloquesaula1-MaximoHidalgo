@@ -5,8 +5,7 @@ object petroleo {
 }
 
 object biogas {
-  /* el biogas es el resultado de la degradación
-  de materia degradable, así que en si es una forma de reciclar */
+  /* el biogas es el resultado de la degradaciónde materia degradable, así que en si es una forma de reciclar */
   method consumo() = 0
   
   method sufijo() = "biogas"
@@ -15,8 +14,8 @@ object biogas {
 object gasoil {
   var pureza = 0.4
   
-  method pureza(porentaje) {
-    pureza = porentaje
+  method pureza(porcentaje) {
+    pureza = porcentaje
   }
   
   method consumo() = 500 * pureza
